@@ -24,7 +24,6 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
         
         getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
         
-        
     }
 
     @Override

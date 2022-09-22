@@ -32,12 +32,15 @@ public class AgeCalculatorServlet extends HttpServlet {
         String age = request.getParameter("age");
         String resultMessage;
         
-        if (age.equals("")) {
-            resultMessage = "You must give your current age.";
-        } else  {
+        try {
+            
             int ageInteger = Integer.parseInt(age);
             ageInteger++;
             resultMessage = "Your age next birthday will be " + ageInteger + ".";
+            
+        } catch (Exception e)   {
+            
+            resultMessage = "You must give your current age.";
         }
 
         request.setAttribute("resultMessage", resultMessage);
