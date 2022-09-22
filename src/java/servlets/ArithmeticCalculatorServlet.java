@@ -36,24 +36,30 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
         String second = request.getParameter("second");
         String resultMessage;
         
-        int firstInteger = Integer.parseInt(first);
-        int secondInteger = Integer.parseInt(second);
-        
-        if (whichArithmetic.equals("+"))    {
+        try {
             
-            resultMessage = "" + (firstInteger + secondInteger);
+            int firstInteger = Integer.parseInt(first);
+            int secondInteger = Integer.parseInt(second);
+
+            if (whichArithmetic.equals("+"))    {
+
+                resultMessage = "" + (firstInteger + secondInteger);
+
+            } else if (whichArithmetic.equals("-"))  {
+
+                resultMessage = "" + (firstInteger - secondInteger);
+
+            } else if (whichArithmetic.equals("*")) {
+
+                resultMessage = "" + (firstInteger * secondInteger);
+
+            } else  {
+
+                resultMessage = "" + (firstInteger % secondInteger);
+            }
+        } catch (Exception e)  {
             
-        } else if (whichArithmetic.equals("-"))  {
-            
-            resultMessage = "" + (firstInteger - secondInteger);
-            
-        } else if (whichArithmetic.equals("*")) {
-            
-            resultMessage = "" + (firstInteger * secondInteger);
-            
-        } else  {
-            
-            resultMessage = "" + (firstInteger % secondInteger);
+            resultMessage = "invalid";
         }
         
         request.setAttribute("first", first);
@@ -62,6 +68,5 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
 
         getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
     }
-
 
 }
